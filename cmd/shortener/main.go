@@ -46,6 +46,11 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		if len(body) == 0 {
+			w.WriteHeader(http.StatusBadRequest)
+			return
+		}
+
 		urlShort := "http://" + r.Host + "/" + shorteningUrl(string(body))
 
 		w.Header().Set("Content-Type", "text/plain")
