@@ -1,16 +1,15 @@
-package main
+package handlers
 
 import (
 	"net/http"
 	"net/http/httptest"
-	"testing"
-
 	"strings"
+	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_mainHandler(t *testing.T) {
+func TestMainHandler(t *testing.T) {
 	type want struct {
 		code        int
 		response    string
