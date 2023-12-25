@@ -51,7 +51,7 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		urlShort := "http://" + r.Host + "/" + shorteningUrl(string(body))
+		urlShort := "http://" + r.Host + "/" + shorteningURL(string(body))
 
 		w.Header().Set("Content-Type", "text/plain")
 		w.WriteHeader(http.StatusCreated)
@@ -63,7 +63,7 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			return
 		}
-		longURL := getUrl(uri[1])
+		longURL := getURL(uri[1])
 		if longURL == "" {
 			w.WriteHeader(http.StatusBadRequest)
 			return
@@ -75,7 +75,7 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func shorteningUrl(longURL string) string {
+func shorteningURL(longURL string) string {
 
 	// получаем короткий url как хэш текущего времени
 	hd := hashids.NewData()
@@ -88,7 +88,7 @@ func shorteningUrl(longURL string) string {
 	return urlID
 }
 
-func getUrl(shortURL string) string {
+func getURL(shortURL string) string {
 	return ShortURL[shortURL]
 }
 
