@@ -59,7 +59,7 @@ func Test_mainHandler(t *testing.T) {
 			assert.Equal(t, tt.want.code, res.StatusCode)
 
 			// получаем и проверяем тело запроса
-			//defer res.Body.Close()
+			defer res.Body.Close()
 			//resBody, err := io.ReadAll(res.Body)
 
 			//require.NoError(t, err)

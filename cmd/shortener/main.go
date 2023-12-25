@@ -9,7 +9,7 @@ import (
 	"github.com/speps/go-hashids"
 )
 
-var ShortUrl = make(map[string]string)
+var ShortURL = make(map[string]string)
 
 func main() {
 
@@ -63,19 +63,19 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			return
 		}
-		longUrl := getUrl(uri[1])
-		if longUrl == "" {
+		longURL := getUrl(uri[1])
+		if longURL == "" {
 			w.WriteHeader(http.StatusBadRequest)
 			return
 		}
-		http.Redirect(w, r, longUrl, http.StatusTemporaryRedirect)
+		http.Redirect(w, r, longURL, http.StatusTemporaryRedirect)
 	default:
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 }
 
-func shorteningUrl(longUrl string) string {
+func shorteningUrl(longURL string) string {
 
 	// получаем короткий url как хэш текущего времени
 	hd := hashids.NewData()
@@ -83,13 +83,13 @@ func shorteningUrl(longUrl string) string {
 	now := time.Now()
 	urlID, _ := h.Encode([]int{int(now.Unix())})
 
-	ShortUrl[urlID] = string(longUrl)
+	ShortURL[urlID] = string(longURL)
 
 	return urlID
 }
 
-func getUrl(shortUrl string) string {
-	return ShortUrl[shortUrl]
+func getUrl(shortURL string) string {
+	return ShortURL[shortURL]
 }
 
 /*Сервер должен быть доступен по адресу http://localhost:8080 и предоставлять два эндпоинта:
