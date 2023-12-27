@@ -1,8 +1,8 @@
 package config
 
 type ConfigData struct {
-	RunAddr   string
-	ShortAddr string
+	RunAddr  string
+	BaseAddr string
 }
 
 func NewConfig() *ConfigData {

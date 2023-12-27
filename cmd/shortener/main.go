@@ -30,7 +30,7 @@ func run() error {
 	r := chi.NewRouter()
 
 	r.Get("/{id}", handlers.ResolveURL)
-	r.Post("/", handlers.ShorteningURL(cfg.ShortAddr))
+	r.Post("/", handlers.ShorteningURL(cfg.BaseAddr))
 
 	fmt.Println("Running server on", cfg.RunAddr)
 	return http.ListenAndServe(cfg.RunAddr, r)

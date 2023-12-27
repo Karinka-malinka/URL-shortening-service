@@ -21,6 +21,6 @@ func ShorteningURL(longURL string) string {
 	return urlID
 }
 
-func GetURL(shortURL string) string {
+func ResolveURL(shortURL string) string {
 	return ShortURL[shortURL]
 }
