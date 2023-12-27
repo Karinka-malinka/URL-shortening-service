@@ -13,7 +13,7 @@ func ResolveURL(w http.ResponseWriter, r *http.Request) {
 	longURL := app.GetURL(chi.URLParam(r, "id"))
 	if longURL == "" {
 		w.WriteHeader(http.StatusBadRequest)
-		returng
+		return
 	}
 	http.Redirect(w, r, longURL, http.StatusTemporaryRedirect)
 }
